@@ -17,19 +17,19 @@ body {
     width: 100%; /* L'image prend toute la largeur de la fenêtre */
     height: 100%; /* L'image prend toute la hauteur de la fenêtre */
     object-fit: cover; /* L'image couvre l'intégralité de la fenêtre */
-    transition: transform 2s ease, opacity 2s ease; /* Transition douce pour le zoom */
+    transition: transform 2s ease, opacity 2s ease, filter 2s ease; /* Transition douce pour le zoom et le flou */
     cursor: pointer;
-    transform-origin: 42% 77%; /* Zoom depuis un point spécifique (30% largeur, 40% hauteur) */
-
+    transform-origin: 42% 77%; /* Le zoom commence depuis le centre de l'image */
 }
 
 /* La classe zoom est ajoutée uniquement au moment du clic */
 #dynamic-image.zoom {
-    transform: scale(15); /* Zoomer de 3x */
+    transform: scale(15); /* Zoomer de 5x pour un zoom plus profond */
     opacity: 0; /* Disparaître progressivement */
-    /* Pas de positionnement absolu ici, l'image reste centrée sans se déplacer */
+    filter: blur(8px); /* Appliquer un flou uniquement pendant le zoom */
 }
 
+/* Le canvas sera caché initialement */
 #wave-canvas {
     display: none;
     position: absolute;

@@ -32,7 +32,7 @@ function drawWave() {
 // Événement de zoom sur l'image
 image.addEventListener("click", () => {
     image.classList.add("zoom"); // Ajouter la classe zoom pour démarrer l'animation
-    document.body.style.backgroundColor = "#0077BE"; // Changer la couleur du fond du body
+    document.body.style.backgroundColor = "#003366"; // Changer la couleur du fond du body
     setTimeout(() => {
         image.style.display = "none"; // Masquer l'image après le zoom
         canvas.style.display = "block"; // Afficher le canvas
