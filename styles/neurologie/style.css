@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100vh;
+    background-color: #f0f8ff; /* Fond par défaut (avant l'onde) */
+    transition: background-color 2s ease; /* Transition pour changer le fond en douceur */
+}
+
+.image-container {
+    position: relative;
+    height: 100vh; /* Prendre toute la hauteur de la fenêtre */
+    width: 100vw; /* Prendre toute la largeur de la fenêtre */
+}
+
+#dynamic-image {
+    width: 100%; /* L'image prend toute la largeur de la fenêtre */
+    height: 100%; /* L'image prend toute la hauteur de la fenêtre */
+    object-fit: cover; /* L'image couvre l'intégralité de la fenêtre */
+    transition: transform 2s ease, opacity 2s ease; /* Transition douce pour le zoom */
+    cursor: pointer;
+    transform-origin: 42% 77%; /* Zoom depuis un point spécifique (30% largeur, 40% hauteur) */
+
+}
+
+/* La classe zoom est ajoutée uniquement au moment du clic */
+#dynamic-image.zoom {
+    transform: scale(15); /* Zoomer de 3x */
+    opacity: 0; /* Disparaître progressivement */
+    /* Pas de positionnement absolu ici, l'image reste centrée sans se déplacer */
+}
+
+#wave-canvas {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
