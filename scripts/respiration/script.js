@@ -21,10 +21,14 @@ let frameCount = 0; // Compteur de frames pour générer des obstacles
 let score = 0; // Score du joueur (quantité d'oxygène produit)
 let oxygenLevel = 100; // Niveau d'oxygène (barre de progression)
 let isGameOver = false;
+let isStarted = false; // Nouveau flag pour indiquer si le jeu a commencé
 
 // Écouteur d'événement pour le contrôle du phytoplancton
 document.addEventListener('keydown', () => {
     if (!isGameOver) {
+        if (!isStarted) {
+            isStarted = true; // Le jeu démarre au premier input
+        }
         velocity += lift;
     }
 });
@@ -38,9 +42,10 @@ function restartGame() {
     score = 0;
     oxygenLevel = 100;
     isGameOver = false;
+    isStarted = false; // Réinitialisation du flag
 
     gameOverMessage.style.display = 'none';
-    restartButton.style.display = 'inline-block';
+    restartButton.style.display = 'none';
 
     gameLoop(); // Relance la boucle de jeu
 }
@@ -71,8 +76,9 @@ function checkCollision() {
         }
     }
 
+    // Collision avec les bords du canvas
     if (phytoY - 20 < 0 || phytoY + 20 > canvasHeight) {
-        return true; // Collision avec les bords du canvas
+        return true;
     }
 
     return false;
@@ -82,13 +88,20 @@ function checkCollision() {
 function updateGame() {
     if (isGameOver) return;
 
-    // Mise à jour de la position du phytoplancton avec la gravité
-    velocity += gravity;
-    phytoY += velocity;
+    if (isStarted) {
+        // Mise à jour de la position du phytoplancton avec la gravité
+        velocity += gravity;
+        phytoY += velocity;
+    }
+
+    // Empêche le phytoplancton de sortir de l'écran avant le début du jeu
+    if (!isStarted) {
+        phytoY = canvasHeight / 2; // Fixe le phytoplancton au centre
+    }
 
     // Génération d'obstacles toutes les x frames
     frameCount++;
-    if (frameCount % 90 === 0) {
+    if (isStarted && frameCount % 90 === 0) {
         generateObstacle();
     }
 
@@ -120,7 +133,6 @@ function updateGame() {
         restartButton.style.display = 'inline-block';
         return;
     }
-
 }
 
 // Fonction d'affichage/dessin sur le canvas
@@ -144,14 +156,13 @@ function drawGame() {
         ctx.fillRect(obstacle.x, obstacle.bottom, obstacle.width, canvasHeight - obstacle.bottom);
 
         ctx.fill();
-
     }
-
 }
 
 // Boucle principale du jeu
 function gameLoop() {
-    if(isGameOver)return;
+    if (isGameOver) return;
+
     // Mise à jour du jeu
     updateGame();
 
