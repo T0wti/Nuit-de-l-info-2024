@@ -3,9 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neurologie</title>
+    <title>L'océan est un cerveau ?!</title>
+    <!-- Lien vers Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    Neurologie
+    <h1>L'océan est un cerveau ?!</h1>
+
+    <!-- Bouton invisible -->
+    <button id="playButton" class="btn btn-primary" 
+        style="opacity: 0; position: absolute; top: 20%; left: 30%;">Play Music</button>
+    
+    <!-- Audio -->
+    <audio id="audioPlayer">
+        <source src="bonus/Cesi_troll.mp3" type="audio/mp3">
+        Votre navigateur ne supporte pas la lecture audio.
+    </audio>
+
+    <!-- Lien vers Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Sélection du bouton et de l'audio
+        const playButton = document.getElementById('playButton');
+        const audioPlayer = document.getElementById('audioPlayer');
+
+        // Ajouter un événement pour jouer la musique lorsque le bouton est cliqué
+        playButton.addEventListener('click', () => {
+            audioPlayer.play();
+        });
+
+        // (Optionnel) Permettre de déclencher l'audio à partir de n'importe quel clic sur la page
+        document.body.addEventListener('click', () => {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+            }
+        });
+    </script>
 </body>
 </html>
