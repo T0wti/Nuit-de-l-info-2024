@@ -1,9 +1,8 @@
 /* Général */
 body {
-    background-color: #2c64ab; /* Fond bleu */
-    color: white; /* Texte blanc */
+    background-color: #2c64ab;
+    color: white;
     margin: 0;
-    padding: 0;
     height: 100vh;
     position: relative;
     overflow: hidden;
@@ -26,23 +25,12 @@ h1 {
     left: 30%;
 }
 
-/* Audio */
-audio {
-    display: none; /* L'audio est masqué */
-}
-
 /* Images décoratives */
 .decor-image {
     position: absolute;
-    max-width: 100px; /* Taille par défaut */
-    transition: transform 0.3s ease-in-out; /* Animation au survol */
+    max-width: 100px;
 }
 
-.decor-image:hover {
-    transform: scale(1.1); /* Agrandissement au survol */
-}
-
-/* Images spécifiques (personnalisation possible) */
 .decor-image-1 {
     top: 10%;
     left: 5%;
@@ -78,15 +66,12 @@ audio {
 #text-zone-2 {
     position: absolute;
     text-align: center;
-    color: white;
     padding: 10px;
-    border: 2px solid white; /* Optionnel, pour rendre la zone visible */
-    border-radius: 10px;
     max-width: 300px;
-    background: rgba(0, 0, 0, 0.3); /* Fond semi-transparent */
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
 }
 
-/* Texte personnalisé 1 */
 #text-zone-1 {
     top: 25%;
     left: 50%;
@@ -94,27 +79,9 @@ audio {
     font-size: 1.2rem;
 }
 
-/* Texte personnalisé 2 */
 #text-zone-2 {
     bottom: 15%;
     left: 50%;
     transform: translateX(-50%);
     font-size: 1rem;
-}
-
-/* Responsivité (petits écrans) */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2rem;
-    }
-
-    .decor-image {
-        max-width: 70px; /* Réduction de la taille des images */
-    }
-
-    #text-zone-1,
-    #text-zone-2 {
-        font-size: 0.9rem;
-        max-width: 250px; /* Réduction de la largeur des zones de texte */
-    }
 }
