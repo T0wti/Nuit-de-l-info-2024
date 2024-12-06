@@ -8,6 +8,21 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <!-- Gradient background style -->
+    <style>
+        body {
+            background: linear-gradient(to bottom, #00bfff, #32cd32); /* Light blue to green gradient */
+            color: white; /* Text color */
+        }
+
+        /* Adding black frame to the canvas */
+        #gameCanvas {
+            background-color: rgba(0, 0, 0, 0.2); /* Slight transparent dark background for the canvas */
+            border: 5px solid black; /* Black frame */
+            padding: 10px; /* Optional: Adds a bit of space between the canvas and the frame */
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -32,7 +47,10 @@
 
     <!-- Game Section -->
     <div class="container text-center">
-        <canvas id="gameCanvas" width="800" height="400"></canvas>
+        <!-- Black frame around canvas -->
+        <div class="frame-container">
+            <canvas id="gameCanvas" width="800" height="400"></canvas>
+        </div>
 
         <!-- Score and Progress -->
         <h3 id="score">Oxygène produit : 0</h3>
@@ -89,6 +107,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!-- Game Script -->
-    <script src="./scripts/respiration/script.js" ></script>
+    <script src="./scripts/respiration/script.js"></script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const scoreDisplay = document.getElementById('score');
-const oxygenBar = document.getElementById('oxygenBar');
+const progressBar = document.getElementById('oxygenBar'); // Rename to progressBar
 const gameOverMessage = document.getElementById('game-over');
 const restartButton = document.getElementById('restart-button');
 
@@ -21,10 +21,10 @@ let damping = 0.9; // Facteur d'amortissement
 let obstacles = []; // Liste des obstacles
 let frameCount = 0; // Compteur de frames pour générer des obstacles
 let score = 0; // Score du joueur
-let oxygenLevel = 100; // Niveau d'oxygène
+let levelProgress = 0; // Progression du niveau (nombre d'obstacles passés)
 let isGameOver = false;
 let isStarted = false; // Nouveau flag pour indiquer si le jeu a commencé
-let isStarted = false; // Nouveau flag pour indiquer si le jeu a commencé
+
 
 // Écouteur d'événement pour le contrôle du phytoplancton
 document.addEventListener('keydown', () => {
@@ -47,7 +47,7 @@ function restartGame() {
     obstacles = [];
     frameCount = 0;
     score = 0;
-    oxygenLevel = 100;
+    levelProgress = 0; // Réinitialiser la progression du niveau
     isGameOver = false;
     isStarted = false;
 
@@ -70,15 +70,18 @@ function generateObstacle() {
     const gapPosition = Math.random() * (canvasHeight - gapHeight);
 
     // Color schemes representing global warming impacts
-    let obstacleColor = '#f44336'; // Red for pollution or rising temperature
-    let secondaryColor = '#ff9800'; // Orange for heatwaves or pollution
+    const colors = ['#f44336', '#ff9800', '#2196F3']; // Red, yellow, and blue
 
-    // As oxygen decreases, make obstacles more frequent and larger to reflect worsening global warming
-    if (oxygenLevel < 50) {
-        obstacleColor = '#ff5722'; // Darker red, indicating worsening conditions
-        secondaryColor = '#e64a19'; // Darker orange
+    // Ensure the blue color is not the same as the background color
+    let obstacleColor = colors[Math.floor(Math.random() * colors.length)];
+    let secondaryColor = colors[Math.floor(Math.random() * colors.length)];
+
+    // If both colors are the same (especially blue), select new ones
+    while (obstacleColor === secondaryColor) {
+        secondaryColor = colors[Math.floor(Math.random() * colors.length)];
     }
 
+    // As level progress increases, make obstacles more frequent and larger to reflect more danger
     obstacles.push({
         x: canvasWidth,
         width: 60, // Wider obstacles for more danger
@@ -141,9 +144,9 @@ function updateGame() {
         phytoY = canvasHeight / 2;
     }
 
-    // Génération d'obstacles toutes les x frames, ajusté selon le niveau d'oxygène
+    // Génération d'obstacles toutes les x frames
     frameCount++;
-    if (isStarted && frameCount % (150 - Math.floor(oxygenLevel / 10)) === 0) {
+    if (isStarted && frameCount % 150 === 0) {
         generateObstacle();
     }
 
@@ -154,21 +157,24 @@ function updateGame() {
         if (obstacles[i].x + obstacles[i].width < 0) {
             obstacles.splice(i, 1);
             score++;
-            oxygenLevel += Math.min(10, (100 - oxygenLevel));
+            levelProgress++; // Augmenter la progression du niveau
+
+            // Mettre à jour la barre de progression
+            progressBar.style.width = `${(levelProgress / 15) * 100}%`;
+
+            // Vérification de la fin du jeu si la progression atteint 15
+            if (levelProgress >= 15) {
+                isGameOver = true;
+                gameOverMessage.style.display = 'block';
+                gameOverMessage.innerText = 'Félicitations : Vous avez gagné !';
+                restartButton.style.display = 'inline-block';
+                return;
+            }
         }
     }
 
     // Vérification des collisions
     if (checkCollision()) {
-        isGameOver = true;
-        gameOverMessage.style.display = 'block';
-        restartButton.style.display = 'inline-block';
-        return;
-    }
-
-    // Mise à jour de l'oxygène
-    oxygenLevel -= 0.03;
-    if (oxygenLevel <= 0) {
         isGameOver = true;
         gameOverMessage.style.display = 'block';
         restartButton.style.display = 'inline-block';
@@ -226,8 +232,6 @@ function drawGame() {
 
 // Boucle principale du jeu
 function gameLoop() {
-
-
     if (isGameOver) return;
 
     // Mise à jour du jeu
@@ -236,10 +240,9 @@ function gameLoop() {
     // Dessin du jeu
     drawGame();
 
-    // Mise à jour de l'affichage du score et de la barre d'oxygène
-    scoreDisplay.innerText = `Oxygène produit : ${score}`;
-    oxygenBar.style.width = `${oxygenLevel}%`;
-    oxygenBar.setAttribute('aria-valuenow', oxygenLevel);
+    // Mise à jour de l'affichage du score et de la barre de progression
+    scoreDisplay.innerText = `Obstacles franchis : ${levelProgress}`;
+    progressBar.style.width = `${(levelProgress / 15) * 100}%`;
 
     // Relance la boucle à la prochaine frame
     requestAnimationFrame(gameLoop);
