@@ -24,6 +24,7 @@ let score = 0; // Score du joueur
 let oxygenLevel = 100; // Niveau d'oxygène
 let isGameOver = false;
 let isStarted = false; // Nouveau flag pour indiquer si le jeu a commencé
+let isStarted = false; // Nouveau flag pour indiquer si le jeu a commencé
 
 // Écouteur d'événement pour le contrôle du phytoplancton
 document.addEventListener('keydown', () => {
@@ -225,6 +226,8 @@ function drawGame() {
 
 // Boucle principale du jeu
 function gameLoop() {
+
+
     if (isGameOver) return;
 
     // Mise à jour du jeu
