@@ -11,7 +11,8 @@ let wave = {
     amplitude: 50, 
     frequency: 0.02, 
     speed: 0.05,
-    drawingProgress: 0 // Contrôle de l'avancement du dessin
+    drawingProgress: 0, // Contrôle de l'avancement du dessin
+    color: "#FF6F61", // Rouge pastel initial
 };
 
 // Fonction pour dessiner une onde qui arrive progressivement
@@ -27,8 +28,8 @@ function drawWave() {
         ctx.lineTo(x, y);
     }
 
-    // Changer la couleur de la vague ici
-    ctx.strokeStyle = "green"; // Changez "green" par la couleur que vous souhaitez
+    // Appliquer la couleur actuelle de l'onde
+    ctx.strokeStyle = wave.color; // Utilisation de la couleur définie
     ctx.lineWidth = 2;
     ctx.stroke();
 
@@ -49,6 +50,11 @@ image.addEventListener("click", () => {
         image.style.display = "none"; // Masquer l'image après le zoom
         canvas.style.display = "block"; // Afficher le canvas
         drawWave(); // Démarrer l'animation des vagues
+
+        // Après 5 secondes, appliquer la transition de couleur de rouge à bleu
+        setTimeout(() => {
+            wave.color = "#1E90FF"; // Changer la couleur de l'onde en bleu de mer
+        }, 5000); // Délai de 5 secondes pour le changement de couleur
     }, 2000); // Attendre la fin de l'animation de zoom
 });
 

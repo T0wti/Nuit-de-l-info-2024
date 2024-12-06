@@ -38,3 +38,8 @@ body {
     width: 100%;
     height: 100%;
 }
+
+/* Transition couleur de la wave */
+.wave {
+    transition: stroke 5s ease-in-out; /* Applique une transition de couleur */
+}
