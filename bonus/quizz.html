@@ -6,38 +6,78 @@
     <title>Nuit de l'info - Quizz Cyber</title>
     <style>
         body {
-            padding-left: 18%;
-            padding-right: 18%;
+            background-image: url('https://www.genetec.com/binaries/content/gallery/illustrationstock_cyberthreats-recolored_adobestock_422696329.jpg');
             background-size: cover;
             background-attachment: fixed;
-            background-image: url('https://www.genetec.com/binaries/content/gallery/illustrationstock_cyberthreats-recolored_adobestock_422696329.jpg');
             margin: 0;
-            color: white;
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
         }
         .container {
-            background: rgba(39, 36, 36, 0.8);
-            padding: 20px;
-            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 70%;
+            max-width: 900px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
-        h1, h2 {
+        h1 {
+            font-size: 2.5em;
             text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #4CAF50;
+            font-weight: normal;
         }
         .question {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
         .options {
-            padding-left: 4%;
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .options input {
+            margin-right: 10px;
+            transform: scale(1.2);
         }
         .submit-button {
             display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
+            width: 200px;
+            margin: 30px auto;
+            padding: 15px 20px;
+            font-size: 1.2em;
             background-color: #4CAF50;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+        .question h2 {
+            font-size: 1.3em;
+            color: #66B3FF;
+        }
+        .container .question:last-child {
+            margin-bottom: 0;
+        }
+        .container h2 {
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: #007BFF;
         }
     </style>
 </head>
