@@ -1,11 +1,231 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Circulation</title>
+    <title>Le Cœur et la Circulation Thermohaline</title>
+    <!-- Lien vers Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/coeur/style.css">
+    <script src="scripts/general_scripts.js"></script>
+    <script src="scripts/circulation/script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body>
-    Circulation ta grosse voiture
+    <div class="container my-5">
+        <header class="text-center mb-4">
+            <h1 id="title-header" onclick="narrateText('title-header')">
+                Le Cœur Humain et la Circulation Thermohaline
+            </h1>
+            <p class="lead" id="subtitle-header" onclick="narrateText('subtitle-header')">
+                Deux moteurs essentiels à la vie et au climat mondial
+            </p>
+        </header>
+    
+        <section>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card p-3">
+                        <h2 id="pump-and-flows-title" class="card-title" onclick="narrateText('pump-and-flows-title')">
+                            1. La Pompe et les Flux
+                        </h2>
+                        <p id="pump-and-flows-text" class="card-text" onclick="narrateText('pump-and-flows-text')">
+                            Le cœur agit comme une pompe qui propulse le sang dans un réseau de vaisseaux, tout comme les différences de densité et de température font circuler l’eau dans les océans. Ces cycles constants sont essentiels :
+                        </p>
+                        <ul>
+                            <li id="blood-circulation" onclick="narrateText('blood-circulation')">
+                                Circulation sanguine : alimente les organes en oxygène et nutriments.
+                            </li>
+                            <li id="thermohaline-circulation" onclick="narrateText('thermohaline-circulation')">
+                                Circulation thermohaline : redistribue la chaleur et influence le climat.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card p-3">
+                        <h2 id="mechanisms-title" class="card-title" onclick="narrateText('mechanisms-title')">
+                            2. Les Mécanismes de Propulsion
+                        </h2>
+                        <p id="mechanisms-text" class="card-text" onclick="narrateText('mechanisms-text')">
+                            <b>Cœur humain :</b> La contraction rythmique du muscle cardiaque génère une pression pour propulser le sang.
+                        </p>
+                        <p id="ocean-propulsion" class="card-text" onclick="narrateText('ocean-propulsion')">
+                            <b>Circulation thermohaline :</b> Les variations de densité de l'eau, causées par la température (thermo) et la salinité (haline), créent des courants océaniques puissants.
+                        </p>
+                        <img 
+                            id="thermohaline-image"
+                            src="images/circulation/curcuit_thermoline.png" 
+                            alt="Schéma explicatif de la circulation thermohaline" 
+                            class="img-fluid" 
+                            onclick="narrateText('thermohaline-image-desc')"
+                        >
+                        <p id="thermohaline-image-desc" class="visually-hidden">
+                            Ce schéma montre la circulation thermohaline, souvent appelée tapis roulant océanique, qui relie les eaux froides profondes des pôles aux eaux chaudes de surface des tropiques.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card p-3">
+                        <h2 id="cycle-title" class="card-title" onclick="narrateText('cycle-title')">
+                            3. Cycle Global
+                        </h2>
+                        <p id="body-cycle" class="card-text" onclick="narrateText('body-cycle')">
+                            <b>Corps :</b> Le sang fait un circuit complet entre le cœur, les poumons et les organes.
+                        </p>
+                        <p id="ocean-cycle" class="card-text" onclick="narrateText('ocean-cycle')">
+                            <b>Océan :</b> Le "tapis roulant océanique" relie les eaux profondes froides des pôles aux eaux chaudes des tropiques. Ce cycle prend entre 1 000 et 1 600 ans pour s'accomplir.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card p-3">
+                        <h2 id="importance-title" class="card-title" onclick="narrateText('importance-title')">
+                            4. Importance pour la Santé Globale
+                        </h2>
+                        <p id="heart-health" class="card-text" onclick="narrateText('heart-health')">
+                            <b>Le cœur :</b> Maintient l'homéostasie du corps en transportant hormones, nutriments et gaz.
+                        </p>
+                        <p id="ocean-health" class="card-text" onclick="narrateText('ocean-health')">
+                            <b>La circulation thermohaline :</b> Influence la biodiversité marine, les nutriments et la régulation climatique mondiale.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="level-2-crisis" class="my-5">
+            <div class="text-center mb-4">
+                <h2 class="display-4 text-primary">Niveau 2 : Premières Crises</h2>
+                <p class="lead text-muted">Objectif : Réagir rapidement aux premières crises.</p>
+            </div>
+        
+            <div class="row align-items-center">
+                <!-- Animation à gauche -->
+                <div class="col-md-6 text-center">
+                    <div id="crisis-animation" class="position-relative" style="height: 350px;">
+                        <!-- Vagues SVG -->
+                        <svg id="ocean-waves" viewBox="0 0 1440 320" class="w-100 h-100">
+                            <path fill="#0099ff" fill-opacity="0.5" d="M0,160L48,144C96,128,192,96,288,122.7C384,149,480,235,576,250.7C672,267,768,213,864,186.7C960,160,1056,160,1152,165.3C1248,171,1344,181,1392,186.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                        </svg>
+                        <!-- Cœur humain -->
+                        <img id="human-heart" src="images/circulation/coeur.png" alt="Cœur humain" class="position-absolute top-50 start-50 translate-middle" style="width: 150px;">
+                    </div>
+                    <label for="ocean-temperature" class="form-label">Température de l'océan :</label>
+                    <input type="range" id="ocean-temperature" class="form-range" min="1" max="100" value="50">
+                </div>
+        
+                <!-- Description et Impact -->
+                <div class="col-md-6">
+                    <h3 class="h4 text-primary">État des océans et impact sur le cœur</h3>
+                    <div id="explanation" class="border border-light p-3" style="height: 300px; overflow-y: auto;">
+                        <p>Contrôlez la température des océans pour maintenir l'équilibre.</p>
+                        <p><strong>Effets :</strong></p>
+                        <ul>
+                            <li>Température basse : Réduction des courants océaniques, impact sur l'écosystème.</li>
+                            <li>Température normale : Fonctionnement optimal des systèmes.</li>
+                            <li>Température élevée : Perturbation des courants, stress thermique sur le cœur.</li>
+                        </ul>
+                        <p>Contrôlez la température pour éviter une crise.</p>
+                    </div>
+                    <button id="start-crisis" class="btn btn-success mt-3 w-100">Démarrer la Crise</button>
+                    <button id="stop-crisis" class="btn btn-danger mt-2 w-100">Arrêter la Crise</button>
+                </div>
+            </div>
+        
+            <div class="row mt-4">
+                <!-- Gestion des Crises -->
+                <div class="col-md-6">
+                    <h3 class="h4 text-info">Gestion des Crises</h3>
+                    <p>Les premières crises incluent :</p>
+                    <ul>
+                        <li>Hypertension légère</li>
+                        <li>Fonte des glaces polaires</li>
+                    </ul>
+                    <p>Utilisez les outils de gestion pour atténuer ces effets :</p>
+                    <ul>
+                        <li><b>Barrières thermiques :</b> Limiter les variations de température des océans.</li>
+                        <li><b>Ajustements des valves :</b> Optimiser le débit sanguin pour stabiliser la pression.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="level-3-puzzle" class="my-5 shadow-lg p-4 bg-light rounded">
+            <div class="text-center mb-4">
+                <h2 class="display-4 text-primary">Niveau 3 : Résoudre le Puzzle Climatique</h2>
+                <p class="lead text-muted">Objectif : Résoudre le puzzle pour restaurer l'équilibre climatique de l'océan.</p>
+            </div>
+        
+            <div class="row align-items-center">
+                <!-- Puzzle à gauche -->
+                <div class="col-md-6 text-center">
+                    <div id="puzzle-container" class="d-flex justify-content-center" style="min-height: 300px;">
+                        <!-- Conteneur du puzzle -->
+                        <div class="slider-game">
+                            <div class="container"></div>
+                            <div class="original-image">
+                                <img src="images/ocean_puzzle.png" alt="Océan" />
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-3 text-muted">Faites glisser les pièces pour reconstituer le puzzle climatique de l'océan.</p>
+                </div>
+        
+                <!-- Explication de l'impact -->
+                <div class="col-md-6">
+                    <h3 class="h4 text-primary">Impact du puzzle sur le cœur humain</h3>
+                    <div id="heart-explanation" class="border border-light p-3 bg-light" style="height: 300px; overflow-y: auto;">
+                        <p>Chaque pièce du puzzle représente une solution au changement climatique affectant l'océan. Une fois toutes les pièces assemblées, vous rétablissez l'équilibre des écosystèmes marins et la santé du cœur humain.</p>
+                        <p><strong>Résultats attendus :</strong></p>
+                        <ul>
+                            <li><b>Pièces bien placées :</b> Restitution d'un équilibre thermique des océans.</li>
+                            <li><b>Pièces mal placées :</b> Perturbation de la circulation océanique et augmentation du stress thermique sur le cœur humain.</li>
+                        </ul>
+                        <button id="check-puzzle" class="btn btn-success mt-3 w-100">Vérifier le puzzle</button>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="row mt-4">
+                <!-- Résultats du puzzle -->
+                <div class="col-md-12 text-center">
+                    <h3 class="h4 text-info">Résultats du Puzzle</h3>
+                    <p id="puzzle-result" class="lead text-muted"></p>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="text-center mt-5">
+            <h3 id="resources-title" onclick="narrateText('resources-title')">
+                Ressources Complémentaires
+            </h3>
+            <ul>
+                <li id="encyclopedia-resource" onclick="narrateText('encyclopedia-resource')">
+                    <a href="#">Encyclopédie de l'environnement</a> : Explications approfondies des courants océaniques et de leur impact.
+                </li>
+                <li id="seascape-resource" onclick="narrateText('seascape-resource')">
+                    <a href="#">Sea(e)scape</a> : Informations sur le "tapis roulant" thermohalin.
+                </li>
+                <li id="wikipedia-resource" onclick="narrateText('wikipedia-resource')">
+                    <a href="#">Wikipédia</a> : Vue d'ensemble de la circulation thermohaline.
+                </li>
+            </ul>
+            <p id="footer-note" class="mt-3" onclick="narrateText('footer-note')">
+                &copy; 2024 Circulation & Océans. Tous droits réservés.
+            </p>
+        </footer>
+    </div>
+
+    
+    
+    
+
+    <!-- Lien vers Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
