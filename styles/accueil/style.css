@@ -10,9 +10,38 @@
 
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
 }
 
+.banniere-wrapper {
+    position: fixed;
+    top: 0;
+    left: -200px; 
+    width: 200px; 
+    height: 100%; 
+    background-color: #333; 
+    transition: left 0.3s ease; 
+    z-index: 1000; 
+    padding-top: 20px;
+    color: white;
+}
+.banniere-contenu {
+    padding: 20px;
+    text-align: center;
+}
+.icone-banniere {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 30px;
+    color: black;
+    cursor: pointer;
+    z-index: 1001; 
+  }
 
+.banniere-wrapper.show {
+    left: 0; 
+  }
 
+.icone-banniere.show {
+    left: 220px;
+  }
