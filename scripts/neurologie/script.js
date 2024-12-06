@@ -20,7 +20,7 @@ function drawWave() {
     ctx.beginPath();
     
     // Dessiner l'onde progressivement en fonction du dessin progressif
-    for (let x = 0; x < canvas.width * wave.drawingProgress; x++) {
+    for (let x = canvas.width; x > canvas.width * (1 - wave.drawingProgress); x--) {
         let y =
             canvas.height / 2 +
             Math.sin(wave.phase + x * wave.frequency) * wave.amplitude;
