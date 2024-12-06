@@ -1,20 +1,53 @@
-body {
-    background-color: #0e4d92; /* Bleu océan profond */
-    color: #ffffff; /* Texte blanc pour un bon contraste */
-    font-family: 'Arial', sans-serif;
+#level1 {
+    background: url('https://i.pinimg.com/736x/a0/ef/55/a0ef558a8e3f5d02315df24d868c315c--sun-rays-scuba-diving.jpg') no-repeat center center fixed;
+    background-size: cover;
+    padding: 20px;
+    border-radius: 10px;
 }
-h1, h2 {
-    color: #00d1e0; /* Bleu turquoise clair */
+
+.titre-level-1 {
+    margin-bottom: 200px;
 }
-.card {
-    background-color: #023e73; /* Fond bleu foncé pour les cartes */
-    border: none;
-    color: #ffffff;
+
+.animations {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
 }
-a {
-    color: #00d1e0; /* Couleur turquoise pour les liens */
+
+/* Rajouter style pour display-4 */
+.display-4 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+    color: #343838;
 }
-a:hover {
-    text-decoration: underline;
-    color: #007a9c;
+
+.waves {
+    width: 200px;
+    height: 100px;
+    background: url('https://i.imgur.com/8K3VZ3e.png') repeat-x;
+    position: relative;
+    animation: wave 2s infinite linear;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1) rotate(-45deg); }
+    50% { transform: scale(1.1) rotate(-45deg); }
+}
+
+@keyframes wave {
+    0% { background-position-x: 0; }
+    100% { background-position-x: 200px; }
 }

@@ -8,6 +8,7 @@
     <!-- Lien vers Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles/coeur/style.css">
+    <link rel="stylesheet" href="styles/general_styles.css">
     <script src="scripts/general_scripts.js"></script>
     <script src="scripts/circulation/script.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -23,7 +24,8 @@
                 Deux moteurs essentiels à la vie et au climat mondial
             </p>
         </header>
-
+        
+        <!-- Partie explications -->
         <section>
             <div class="row">
                 <div class="col-md-6 mb-4">
@@ -33,7 +35,7 @@
                         </h2>
                         <p id="pump-and-flows-text" class="card-text" onclick="narrateText('pump-and-flows-text')">
                             Le cœur agit comme une pompe qui propulse le sang dans un réseau de vaisseaux, tout comme
-                            les différences de densité et de température font circuler l’eau dans les océans. Ces cycles
+                            les différences de densité et de température font circuler l'eau dans les océans. Ces cycles
                             constants sont essentiels :
                         </p>
                         <ul>
@@ -104,13 +106,57 @@
                 </div>
             </div>
         </section>
-        <section id="level-2-crisis" class="my-5">
-            <div class="text-center mb-4">
-                <h2 class="display-4 text-primary">Niveau 2 : Premières Crises</h2>
-                <p class="lead text-muted">Objectif : Réagir rapidement aux premières crises.</p>
+
+        <!-- Partie Jeu - Niveau 1 -->
+        <section id="game-section" class="my-5">
+            <div id="home" class="container text-center mt-5">
+                <h1 class="display-4 text-primary">Niveau 1 : Le Cœur et l'Océan en Action</h1>
+                <p class="lead">Bienvenue dans le jeu où vous devez équilibrer le cœur humain et les courants océaniques
+                    pour maintenir l'harmonie.</p>
+                <div class="animations">
+                    <div class="heart"></div>
+                    <div class="waves"></div>
+                </div>
+                <button class="btn btn-primary btn-lg mt-4" onclick="startGame()">Commencer le Jeu</button>
             </div>
 
-            <div class="row align-items-center">
+            <div id="level1" class="container text-center mt-5 d-none">
+                <h1 class="display-4 titre-level-1">Le Cœur et l'Océan en Action - Niveau 1</h1>
+                <p class="lead">Pour passer au niveau supérieur, assurez-vous que le rythme cardiaque est entre 60 et
+                    100 BPM et que les courants océaniques sont stables.</p>
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <h3>Rythme Cardiaque</h3>
+                        <div id="heart-rate" class="display-4">70 BPM</div>
+                        <button class="btn btn-danger btn-lg mt-2 increase"
+                            onclick="increaseHeartRate()">Augmenter</button>
+                        <button class="btn btn-danger btn-lg mt-2 decrease"
+                            onclick="decreaseHeartRate()">Diminuer</button>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Courants Océaniques</h3>
+                        <div id="ocean-current" class="display-4">Stable</div>
+                        <button class="btn btn-primary btn-lg mt-2 increase"
+                            onclick="increaseCurrent()">Accélérer</button>
+                        <button class="btn btn-primary btn-lg mt-2 decrease"
+                            onclick="decreaseCurrent()">Ralentir</button>
+                    </div>
+                </div>
+                <button id="finish-level" class="btn btn-success btn-lg mt-4 d-none">Niveau fini</button>
+            </div>
+        </section>
+
+        <!-- Partie Crises - Niveau 2 -->
+        <section id="level-2-crisis" class="my-5">
+            <div class="text-center mb-4">
+                <h2 id="level-2-crisis-title" class="display-4 text-primary"
+                    onclick="narrateText('level-2-crisis-title')">Niveau 2 : Premières Crises</h2>
+                <p id="level-2-crisis-objective" class="lead text-muted"
+                    onclick="narrateText('level-2-crisis-objective')">Objectif : Réagir rapidement aux premières crises.
+                </p>
+            </div>
+
+            <div class="row align-items-center ocean-background" style="background: url('https://i.pinimg.com/736x/a0/ef/55/a0ef558a8e3f5d02315df24d868c315c--sun-rays-scuba-diving.jpg') no-repeat center center fixed; background-size: cover; padding: 50px 0;">
                 <!-- Animation à gauche -->
                 <div class="col-md-6 text-center">
                     <div id="crisis-animation" class="position-relative" style="height: 350px;">
@@ -124,71 +170,85 @@
                         <img id="human-heart" src="images/circulation/coeur.png" alt="Cœur humain"
                             style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 150px;">
                     </div>
-                    <label for="ocean-temperature" class="form-label">Température de l'océan :</label>
+                    <label for="ocean-temperature" id="ocean-temperature-label" class="form-label"
+                        onclick="narrateText('ocean-temperature-label')">Température de l'océan :</label>
                     <input type="range" id="ocean-temperature" class="form-range" min="1" max="100" value="50">
                 </div>
-
+            
                 <!-- Description et Impact -->
                 <div class="col-md-6">
-                    <h3 class="h4 text-primary">État des océans et impact sur le cœur</h3>
+                    <h3 id="ocean-heart-impact-title" class="h4 text-primary"
+                        onclick="narrateText('ocean-heart-impact-title')">État des océans et impact sur le cœur</h3>
                     <div id="explanation" class="border border-light p-3" style="height: 300px; overflow-y: auto;">
-                        <p>Contrôlez la température des océans pour maintenir l'équilibre.</p>
-                        <p><strong>Effets :</strong></p>
+                        <p id="explanation-text-1" onclick="narrateText('explanation-text-1')">Contrôlez la température
+                            des océans pour maintenir l'équilibre.</p>
+                        <p id="explanation-text-2" onclick="narrateText('explanation-text-2')"><strong>Effets :</strong>
+                        </p>
                         <ul>
-                            <li>Température basse : Réduction des courants océaniques, impact sur l'écosystème.</li>
-                            <li>Température normale : Fonctionnement optimal des systèmes.</li>
-                            <li>Température élevée : Perturbation des courants, stress thermique sur le cœur.</li>
+                            <li id="low-temperature-effect" onclick="narrateText('low-temperature-effect')">Température
+                                basse : Réduction des courants océaniques, impact sur l'écosystème.</li>
+                            <li id="normal-temperature-effect" onclick="narrateText('normal-temperature-effect')">
+                                Température normale : Fonctionnement optimal des systèmes.</li>
+                            <li id="high-temperature-effect" onclick="narrateText('high-temperature-effect')">
+                                Température élevée : Perturbation des courants, stress thermique sur le cœur.</li>
                         </ul>
-                        <p>Contrôlez la température pour éviter une crise.</p>
+                        <p id="explanation-text-3" onclick="narrateText('explanation-text-3')">Contrôlez la température
+                            pour éviter une crise.</p>
                     </div>
-                    <button id="start-crisis" class="btn btn-success mt-3 w-100">Démarrer la Crise</button>
-                    <button id="stop-crisis" class="btn btn-danger mt-2 w-100">Arrêter la Crise</button>
+                    <button id="start-crisis" class="btn btn-success mt-3 w-100"
+                        onclick="narrateText('start-crisis')">Démarrer la Crise</button>
+                    <button id="stop-crisis" class="btn btn-danger mt-2 w-100"
+                        onclick="narrateText('stop-crisis')">Arrêter la Crise</button>
                 </div>
             </div>
+            
 
             <div class="row mt-4">
                 <!-- Gestion des Crises -->
                 <div class="col-md-6">
-                    <h3 class="h4 text-info">Gestion des Crises</h3>
-                    <p>Les premières crises incluent :</p>
+                    <h3 id="crisis-management-title" class="h4 text-info"
+                        onclick="narrateText('crisis-management-title')">Gestion des Crises</h3>
+                    <p id="crisis-management-text-1" onclick="narrateText('crisis-management-text-1')">Les premières
+                        crises incluent :</p>
                     <ul>
-                        <li>Hypertension légère</li>
-                        <li>Fonte des glaces polaires</li>
+                        <li id="mild-hypertension" onclick="narrateText('mild-hypertension')">Hypertension légère</li>
+                        <li id="polar-ice-melt" onclick="narrateText('polar-ice-melt')">Fonte des glaces polaires</li>
                     </ul>
-                    <p>Utilisez les outils de gestion pour atténuer ces effets :</p>
+                    <p id="crisis-management-text-2" onclick="narrateText('crisis-management-text-2')">Utilisez les
+                        outils de gestion pour atténuer ces effets :</p>
                     <ul>
-                        <li><b>Barrières thermiques :</b> Limiter les variations de température des océans.</li>
-                        <li><b>Ajustements des valves :</b> Optimiser le débit sanguin pour stabiliser la pression.</li>
+                        <li id="thermal-barriers" onclick="narrateText('thermal-barriers')"><b>Barrières thermiques
+                                :</b> Limiter les variations de température des océans.</li>
+                        <li id="valve-adjustments"
+                            onclick="narrateText('Le zboub à bouba')"><b>Ajustements des
+                                valves
+                                :</b> Optimiser le débit sanguin pour stabiliser la pression.</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <footer class="text-center mt-5">
+        <!-- Informations supplémentaires -->
+        <section class="text-center mt-5">
             <h3 id="resources-title" onclick="narrateText('resources-title')">
                 Ressources Complémentaires
             </h3>
-            <ul>
-                <li id="encyclopedia-resource" onclick="narrateText('encyclopedia-resource')">
-                    <a href="#">Encyclopédie de l'environnement</a> : Explications approfondies des courants océaniques
+            <ul class="list-group list-group-flush">
+                <li id="encyclopedia-resource" class="list-group-item" onclick="narrateText('encyclopedia-resource')">
+                    <a href="https://www.encyclopedie-environnement.org/">Encyclopédie de l'environnement</a> :
+                    Explications approfondies des courants océaniques
                     et de leur impact.
                 </li>
-                <li id="seascape-resource" onclick="narrateText('seascape-resource')">
-                    <a href="#">Sea(e)scape</a> : Informations sur le "tapis roulant" thermohalin.
+                <li id="seascape-resource" class="list-group-item" onclick="narrateText('seascape-resource')">
+                    <a href="https://seaescape.fr/">Sea(e)scape</a> : Informations sur le "tapis roulant" thermohalin.
                 </li>
-                <li id="wikipedia-resource" onclick="narrateText('wikipedia-resource')">
-                    <a href="#">Wikipédia</a> : Vue d'ensemble de la circulation thermohaline.
+                <li id="wikipedia-resource" class="list-group-item" onclick="narrateText('wikipedia-resource')">
+                    <a href="https://fr.wikipedia.org/wiki/Circulation_thermohaline">Wikipédia</a> : Vue d'ensemble de
+                    la circulation thermohaline.
                 </li>
             </ul>
-            <p id="footer-note" class="mt-3" onclick="narrateText('footer-note')">
-                &copy; 2024 Circulation & Océans. Tous droits réservés.
-            </p>
-        </footer>
+        </section>
     </div>
-
-
-
-
 
     <!-- Lien vers Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
